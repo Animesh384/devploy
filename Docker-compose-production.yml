@@ -1,0 +1,47 @@
+version: '3'
+services:
+  react-app:
+    image: react-app-production:local
+    restart: unless-stopped
+    #stdin_open: true
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - mern-app
+  ap-server:
+    image: backendapp
+    restart: unless-stopped
+    env_file: ./backend/.env
+    ports:
+      - "5000:5000"
+    networks:
+      - mern-app   
+    depends_on:
+       - mongo
+    
+  mongo:
+     image: mongo:latest
+     command: mongod --bind_ip_all
+     ports:
+       - "27017:27017"
+  #   volumes:
+  #     - mongo-data:/data/db
+# "mongodb//:mongo:27017/database" conneting string we have to use in our code  
+
+
+
+networks:
+  mern-app:
+    driver: bridge
+
+
+
+volumes:
+#   mongo-data:
+#     driver: local
+  caddy-data:
+    driver: local
+  caddy-configs:
+    driver: local  
+

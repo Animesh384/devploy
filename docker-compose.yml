@@ -1,0 +1,37 @@
+version: '3'
+services:
+  react-app:
+    image: react-app:v1.0.1
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - mern-app
+  ap-server:
+    image: ap-server:v1.0.1
+    ports:
+      - "5000:5000"
+    networks:
+      - mern-app   
+    #depends_on:
+      # - mongo
+    
+  # mongo:
+  #   image: mongo:3.6.19-xenial
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongo-data:/data/db
+# "mongodb//:mongo:27017/database" conneting string we have to use in our code  
+
+
+
+networks:
+  mern-app:
+    driver: bridge
+
+
+# volumes:
+#   mongo-data:
+#     driver: local
+
