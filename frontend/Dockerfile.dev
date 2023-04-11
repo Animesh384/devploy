@@ -11,7 +11,7 @@ RUN npm install && npm install -g serve
 
 COPY  . .
 
-ENV REACT_APP_BASE_URL=http://localhost:3000
+ENV REACT_APP_BASE_URL=http://localhost:5000
 
 ENV PORT=3000
 

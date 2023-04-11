@@ -9,7 +9,7 @@ services:
       - "443:443"
     networks:
       - mern-app
-  ap-server:
+  backendapp:
     image: backendapp
     restart: unless-stopped
     env_file: ./backend/.env
